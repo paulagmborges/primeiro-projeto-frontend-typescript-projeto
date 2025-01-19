@@ -1,0 +1,20 @@
+container-sign-in{
+    justify-content: center;
+    
+}
+.sign-in{
+    background-color:#44444D ;
+    width: 494px;
+    height: 475px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
+}
+
+.sign-in form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
