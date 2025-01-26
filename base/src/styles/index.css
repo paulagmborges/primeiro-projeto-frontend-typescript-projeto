@@ -1,5 +1,6 @@
 @import url('./custom-class.css');
-
+@import url('./buttons.css');
+@import url('./input.css');
 
 * {
   margin: 0;

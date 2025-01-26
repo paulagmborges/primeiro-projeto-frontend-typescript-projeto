@@ -6,7 +6,7 @@ import SignIn from './pages/SignIn';
 function MainRoutes() {
     return (
         <Routes>
-            <Route path="/" element={<SignIn />} />
+            <Route path="/sigin" element={<SignIn />} />
             <Route path="/main" element={<Main />} />
             
         </Routes>
