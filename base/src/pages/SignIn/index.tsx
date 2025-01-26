@@ -1,13 +1,14 @@
 
 import './style.css';
 import { Link } from 'react-router-dom';
-
+import Logo from '../../assets/logoCubos.png'
 
 
 function SignIn() {
     return (
         <div className='container container-sign-in'>
             <div className='sign-in'>
+                <img src={Logo} alt="" />
              
 
                 <form>
