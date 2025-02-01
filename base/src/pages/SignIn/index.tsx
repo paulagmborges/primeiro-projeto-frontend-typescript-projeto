@@ -1,5 +1,5 @@
 
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import './style.css';
 import { Link, Navigate } from 'react-router-dom';
 import Logo from '../../assets/logoCubos.png';
@@ -37,6 +37,14 @@ function SignIn() {
             console.error(error);
         }
     }
+    useEffect(() =>{
+        const token = handleGetToken()
+        if(token){
+            navigate('/main')
+            return
+        }
+
+    }, [])
 
     return (
         <div className="container container-sign-in">
