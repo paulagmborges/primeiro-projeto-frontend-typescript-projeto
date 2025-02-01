@@ -1,9 +1,12 @@
 import './styles.css';
+import Header from '../../components/header/index';
+
 
 function Main() {
   return (
-    <div>
-      <h1>Hello World</h1>
+    <div className='container'>
+      <Header />
+     
     </div>
   );
 }
