@@ -2,7 +2,7 @@
   "users": [
     {
       "email": "daniel.lopes@cubos.academy",
-      "password": "$2a$10$8GOlrdnI/LN2KzTVPnRgeOcDI/7HU4RZhy1paEjZhoFvpl8byA3FG",
+      "password":"$2a$10$8GOlrdnI/LN2KzTVPnRgeOcDI/7HU4RZhy1paEjZhoFvpl8byA3FG",
       "id": 1
     }
   ],
