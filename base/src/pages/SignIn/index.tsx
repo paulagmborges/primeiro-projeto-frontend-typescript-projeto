@@ -1,39 +1,67 @@
-import { useState, FormEvent } from 'react';  
-import axios from 'axios';
+
+import { useState, FormEvent } from 'react';
 import './style.css';
-import { Link } from 'react-router-dom';
-import Logo from '../../assets/logoCubos.png'
+import { Link, Navigate } from 'react-router-dom';
+import Logo from '../../assets/logoCubos.png';
 import api from '../../services/api';
 
-function SignIn() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+import useAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom'
 
-   async function handleSubmit(event: FormEvent){
-        event.preventDefault()
+function SignIn() {
+    const navigate = useNavigate()
+
+    const { handleGetToken, handleAddToken } = useAuth()
+
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+
+
+    async function handleSubmit(event: FormEvent) {
+        event.preventDefault();
         try {
+            if (!email || !password) {
+                throw new Error('Email and password are required');
+            }
+
             const response = await api.post('/login', {
-                email,
-                password,
-              });
-              console.log('Login realizado com sucesso:', response.data);
+                email: email,
+                password: password,
+            });
+
+            const { acessToken } = response.data
+            handleAddToken(acessToken)
+            navigate('/main')
+
         } catch (error) {
-            console.error('Erro ao fazer login:', error);
+            console.error(error);
         }
     }
+
     return (
-        <div className='container container-sign-in'>
-            <div className='sign-in'>
-                <img src={Logo} alt="" />
-             
+        <div className="container container-sign-in">
+            <div className="sign-in">
+                <img src={Logo} alt="Logo" />
 
                 <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder='E-mail' value={ email } onChange={(e)=> setEmail (e.target.value)}/>
-                    <input type="password" placeholder='Password' value={ password } onChange={(e)=> setPassword (e.target.value)} />
+                    <input
+                        type="text"
+                        placeholder="E-mail"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
                     <span>Não tem cadastro?
-                        <Link to='/signup'>Clique aqui</Link>
+                        <Link to="/signup"> Clique aqui</Link>
                     </span>
-                    <button className='btn-pink'>Login</button>
+                    <button className="btn-pink">Login</button>
                 </form>
             </div>
         </div>
@@ -41,4 +69,6 @@ function SignIn() {
 }
 
 export default SignIn;
+
+
 
